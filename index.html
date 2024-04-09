@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+       google.charts.load('current', {'packages':['bar', 'corechart']});
+      google.charts.setOnLoadCallback(drawCharts);
+
+function drawCharts() {
+  drawChart();
+  drawSeriesChart();
+}
+
+function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['City', 'Metro Population (2020)'],
+          ['New York', 20081935],
+          ['Los Angeles', 13200998],
+          ['Chicago', 9449351],
+          ['Dallas', 7637387],
+          ['Houston', 7149642],
+          ['Washington', 6278542],
+          ['Philadelphia', 6245051],
+          ['Toronto', 6202225],
+          ['Miami', 6138333],
+          ['Atlanta', 6104803]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Largest Metro Areas in US & Canada',
+            subtitle: 'Populations of the 10 largest metro areas in US & Canada as of 2020',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+      function drawSeriesChart() {
+
+var data = google.visualization.arrayToDataTable([
+  ['City', 'Latitude', 'Longitude', 'State/Province', 'Population'],
+  ['NYC',    -74.006,              40.7128,      'New York',  20081935],
+  ['LAX',    -118.2428,              34.0537,      'California', 13200998],
+  ['CHI',    -87.6317,              41.8839,      'Illinois',    9449351],
+  ['DAL',    -96.7969,              32.7762,      'Texas',    7637387],
+  ['HOU',    -95.3694,              29.7602,         'Texas',   7149642],
+  ['DCA',    -77.0311,              38.8952,       'District of Columbia', 6278542],
+  ['PHL',    -75.1636,              39.9524,      'Pennsylvania', 6245051],
+  ['TOR',    -79.3839,              43.6535,      'Ontario',   6202225],
+  ['MIA',    -80.2338,              25.7277,      'Florida',   6138333],
+  ['ATL',    -84.3906,              33.7485,      'Georgia',  6104803]
+]);
+var options = {
+  title: 'Most Populous Metro Areas in the US & Canada (2020).' +
+    'Latitude and longitude are graphed to simulate relative geographic positions. Bubble size indicates population.',
+  hAxis: {title: 'Longitude', 
+          viewWindow: {
+              max: -60,
+              min: -130
+          }},
+  vAxis: {title: 'Latitude'},
+  bubble: {textStyle: {fontSize: 11}}
+};
+
+var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
+chart.draw(data, options);
+}
+
+</script>
+</head>
+<body>
+  <div id="columnchart_material" style="width: 1000px; height: 600px;"></div>
+  <div id="series_chart_div" style="width: 900px; height: 500px;"></div>
+</body>
+</html>
